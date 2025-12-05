@@ -180,24 +180,161 @@
 // });
 
 
-const nameInput = document.getElementById('name-input')
-const passwordInput = document.getElementById('password')
-const errorEl = document.getElementById('error')
-const submitBtn = document.getElementById('submit-btn')
+// const nameInput = document.getElementById('name-input')
+// const passwordInput = document.getElementById('password')
+// const errorEl = document.getElementById('error')
+// const submitBtn = document.getElementById('submit-btn')
 
-submitBtn.addEventListener('click', (event) => {
-    event.preventDefault()
-    errorEl.innerHTML = ""
+// submitBtn.addEventListener('click', (event) => {
+//     event.preventDefault()
+//     errorEl.innerHTML = ""
 
-    console.log(nameInput.value, passwordInput.value)
+//     console.log(nameInput.value, passwordInput.value)
 
-    if (nameInput.value.length < 3) {
-        errorEl.innerHTML = "Name must be at least 3 letters"
-    } 
-    else if (passwordInput.value.length < 6) {
-        errorEl.innerHTML = "Password must be at least 6 characters"
-    } 
-    else {
-        errorEl.innerHTML = ""
+//     if (nameInput.value.length < 3) {
+//         errorEl.innerHTML = "Name must be at least 3 letters"
+//     } 
+//     else if (passwordInput.value.length < 6) {
+//         errorEl.innerHTML = "Password must be at least 6 characters"
+//     } 
+//     else {
+//         errorEl.innerHTML = ""
+//     }
+// })
+
+
+// import {add,NUM} from './math.js'
+// console.log(add(10,20))
+// console.log('NUM',NUM)
+// console.log(NUM)
+
+// let a = 10;
+// const checkEven = (num) => {
+//     return new Promise((resolve, reject) => {
+//         if (num % 2 === 0) {
+//             resolve("even");
+//         } else {
+//             reject("odd");
+//         }
+//     });
+// };
+// const checkLessThan10 = (num) => {
+//     return new Promise((resolve, reject) => {
+//         if (num < 10) {
+//             resolve("less than 10");
+//         } else {
+//             reject("greater than 10");
+//         }
+//     });
+// };
+// checkEven(a)
+//     .then((res) => {
+//         console.log("result:", res);
+//         return checkLessThan10(a);
+//     })
+//     .then((res) => {
+//         console.log("result:", res);
+//     })
+//     .catch((err) => {
+//         console.log("error:", err);
+//     });
+
+
+
+
+// // ✔ Use both Promises
+// const p1 = checkEven();
+
+// p1.then((res) => {
+//     console.log("result from checkEven:", res);
+// })
+// .catch((err) => {
+//     console.log("error from checkEven:", err);
+// });
+
+// // ✔ Now use second Promise
+// checkLessThan10()
+//     .then((res) => console.log("checkLessThan10:", res))
+//     .catch((err) => console.log("checkLessThan10:", err));
+
+// async / await 
+// const checkConditions = async()=>{
+//     let a= 10;
+//       console.log('starting ...');
+//     try{
+
+    
+//     const res = await checkEven(a)
+//     console.log("result",res);
+   
+//     }catch (err){
+//         console.log("Error",err)
+//     }
+//     try{
+//     const res2 = await checkLessThan10(a)
+//     console.log("result2", res2)
+//     }catch(err){
+//         console.log("Error",err)
+//     }
+// };
+// checkConditions()
+
+
+// fetch("https://jsonplaceholder.typicode.com/posts/1")
+//   .then(res => {
+//       console.log(res);
+//       return res.json();
+//   })
+//   .then(json => {
+//       console.log(json);
+//   })
+//   .catch(err => {
+//       console.log('Error:', err);
+//   });
+let currentUser = 1;
+
+const fetchData = async () => {
+    document.getElementById('details').innerHTML =
+        '<div class="text-center text-gray-600">Loading user...</div>';
+
+    document.getElementById('user-id').textContent = `User: ${currentUser}`;
+
+    try {
+        const res = await fetch(`https://jsonplaceholder.typicode.com/users/${currentUser}`);
+        const json = await res.json();
+
+        console.log(json);
+
+        document.getElementById('details').innerHTML = `
+            <div class="space-y-2 bg-white shadow p-5 rounded">
+                <div><strong>Name:</strong> ${json.name}</div>
+                <div><strong>Email:</strong> ${json.email}</div>
+                <div><strong>Phone:</strong> ${json.phone}</div>
+                <div><strong>Website:</strong> ${json.website}</div>
+                <div><strong>Company:</strong> ${json.company.name}</div>
+                <div><strong>Address:</strong> 
+                    ${json.address.street}, ${json.address.suite}, ${json.address.city}
+                </div>
+            </div>
+        `;
+    } catch (err) {
+        console.log('error:', err);
+        document.getElementById('details').innerHTML =
+            '<div class="text-red-500 text-center">Failed to load data</div>';
     }
-})
+};
+document.getElementById("next").addEventListener("click", () => {
+    if (currentUser < 10) {
+        currentUser++;
+        fetchData();
+    }
+});
+document.getElementById("prev").addEventListener("click", () => {
+    if (currentUser > 1) {
+        currentUser--;
+        fetchData();
+    }
+});
+
+// Load first user
+fetchData();

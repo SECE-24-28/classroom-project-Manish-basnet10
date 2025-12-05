@@ -15,12 +15,9 @@
             <button id="decrease" class="w-16 h-16 bg-red-500 text-white text-3xl rounded-xl">-</button>
             <button id="increase" class="w-16 h-16 bg-green-500 text-white text-3xl rounded-xl ">+</button>
         </div>
-
     </div>
-
     <script>
         let count = 0;
-
        const countElement =document.getElementById("count");
         const decreaseBtn = document.getElementById("decrease");
         const increaseBtn = document.getElementById("increase");
@@ -29,12 +26,10 @@
             count++;
             countElement.textContent = count;
         });
-
         decreaseBtn.addEventListener("click", () => {
             count--;
             countElement.textContent = count;
         });
     </script>
-
 </body>
 </html>
