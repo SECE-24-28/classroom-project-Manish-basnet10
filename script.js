@@ -76,8 +76,128 @@
     //     newArr.push(el*2);
     // })
     // console.log(newArr);
-    const Array=[1,2,3,4,5,]
-    const res = Array.map((el)=>{
-        return el*2;
-    })
-    console.log(res);
+
+    // const Array=[1,2,3,4,5,]
+    // const res = Array.map((el)=>{
+    //     return el*2;
+    // })
+    // console.log(res);
+
+//     const arr=[1,2,3,4,5,6,]
+//     const res=arr.filter((el)=>{
+// return el%2==0;
+//     })
+//     console.log(res);
+
+// const arr=[10,20,'j',30,'A','V','A']
+// const res= arr.filter((el)=>{
+//     return typeof el === 'string';
+// })
+// console.log(res);
+
+// const arr=[10,false,1.2,-0.7,null,'',undefined,'hello',true]
+
+// const res=arr.filter((el)=>{
+//     return Boolean(el) &&  (typeof el ==='number' || typeof el ==='string' || typeof el ==='boolean');
+// })
+// console.log(res);
+
+// const firstname="manish";
+// const lastname="basnet";
+// const fullname =`${firstname} ${lastname}`;
+// console.log(fullname.toUpperCase());
+// console.log(fullname.toLowerCase());
+// console.log(fullname.substring(0,5));
+// console.log(fullname.split(""));
+
+// const countwords=(str)=>{
+//     return str.split(" ").length;
+// }
+// console.log(countwords("the quick brown fox"));
+
+// let person={
+//     name:"manish",
+//     Age: 25,
+//     isstudent: true
+// };
+// const variable="age";
+// console.log(person.name);
+// console.log(person["Age"]);
+// console.log(person[variable]);
+
+// const person={name:"manish",age:25};
+// console.log(Object.keys(person));
+// console.log(Object.values(person));
+// console.log(Object.entries(person));
+
+// let marks={
+//     math:90,
+//     science:80,
+//     english:70
+// }
+// for(let subject in marks){
+//     console.log(`${subject}=>${marks[subject]}`);
+// }
+//  const entries=Object.entries(marks);
+//  for(let [subject,score] of entries){
+//   console.log(`${subject}=>${score}`);
+//  }
+
+
+// let students =[
+//     {name:"manish",age:20,grade:13},
+//     {name:"ram",age:22,grade:12},
+//     {name:"shyam",age:19,grade:11},
+//     {name:"hari",age:21,grade:14},
+// ]
+
+// students.filter(el=>{
+//     return el.grade>8;
+// }).forEach(el=>{
+//     console.log(el.name);
+// })
+
+
+// // DOM Manipulation
+
+// // Accessing DOM element
+// const headingElement = document.getElementById('heading');
+// console.log(headingElement);
+
+// // Initial changes
+// headingElement.innerHTML = "No heading";
+// headingElement.style.color = 'red';
+// headingElement.style.border = '1px solid black';
+// headingElement.className = "new-class";
+
+// const btnElement = document.getElementById('btn');
+
+// // Event Listener
+// btnElement.addEventListener('click', () => {
+//     headingElement.innerHTML = "Heading changed";
+//     headingElement.style.color = 'blue';
+//     headingElement.style.border = '2px solid green';
+// });
+
+
+const nameInput = document.getElementById('name-input')
+const passwordInput = document.getElementById('password')
+const errorEl = document.getElementById('error')
+const submitBtn = document.getElementById('submit-btn')
+
+submitBtn.addEventListener('click', (event) => {
+    event.preventDefault()
+    errorEl.innerHTML = ""
+
+    console.log(nameInput.value, passwordInput.value)
+
+    if (nameInput.value.length < 3) {
+        errorEl.innerHTML = "Name must be at least 3 letters"
+    } 
+    else if (passwordInput.value.length < 6) {
+        errorEl.innerHTML = "Password must be at least 6 characters"
+    } 
+    else {
+        errorEl.innerHTML = ""
+    }
+})
